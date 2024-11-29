@@ -1,0 +1,97 @@
+{% extends 'customer/home.html' %}
+{% block content %}
+
+
+
+
+<div class="container vp " style="height:auto;">
+
+    <div class="container-fluid">
+        <div class="row empty">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-md-12" style="letter-spacing: 3px; ">
+                <br>{% if username %}
+                <p class="greetings">Hi {{ username }}, Welcome Back!! <span><a href="{% url 'customer:cart' %}"
+                            style="color: black;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></span></p>
+                {% endif %}
+
+                <br>
+                <h1 style="margin-bottom: 50px;">PRODUCTS</h1>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <br>
+                    {% if messages %}
+                    <div class="alert cartalert alert-success" id="notification" role="alert">
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+
+
+                    <script> 
+                        document.addEventListener('DOMContentLoaded', function() {
+                               const notification = document.getElementById('notification');
+                               notification.style.display = 'block'; // Ensure the notification is visible
+                               
+                               setTimeout(() => {
+                                   notification.style.display = 'none'; // Hide the notification after 3 seconds
+                               }, 3000);
+                           });
+                       
+                       </script>
+
+
+                    {% endif %}
+                    {% for i in products %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card cardhov">
+                            <img src="{{ i.image.url }}" class="card-img-top img-fluid" alt="..."
+                                style="height: 350px;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ i.name }}</h5>
+                                <p class="card-text">{{ i.description }}</p>
+                                <h4 class="card-text" style="color: red;text-decoration: solid;">Rs.{{ i.price }}</h4>
+                                <form action="{% url 'customer:add_to_cart' i.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product_id" value="{{ i.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                    <p>{{msg}}</p>
+                                </form>
+                                <br>
+                                <a href="{% url 'customer:cart' %}" class="btn btn-primary">View Cart</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

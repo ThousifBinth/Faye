@@ -1,0 +1,46 @@
+{% extends 'seller/dashboard.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid viewpro">
+<h1>VIEW PRODUCTS</h1>
+
+
+<table class = "table">
+    <tr>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Product Sub-Category</th>
+        <th>Product Price</th>
+        <th>Product Description</th>
+        <th>Product Image</th>
+        <th>Action</th>
+    </tr>
+
+
+        {% for i in products %}
+        <tr>
+            <td>{{ i.name }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.subcategory }}</td>
+            <td>{{ i.price }}</td>
+            <td>{{ i.description }}</td>
+            <td><img src="{{ i.image.url }}" width="100" height="100" alt=""></td>
+            <td><a href="{% url 'seller:editproducts' i.id %}" class="btn btn-primary" >Edit</a></td>
+            <td><a href="{% url 'seller:deleteproducts' i.id %}" class="btn btn-danger">Delete</a></td>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+</table>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

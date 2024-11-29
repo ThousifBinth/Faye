@@ -1,0 +1,72 @@
+{% extends 'customer/home.html' %}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row empty">
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row login">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+            <form class="login-form" method="post">
+                {% csrf_token %}
+
+                <h2 class="text-center mb-4">Login</h2>
+                <br>
+                <div class="mb-3">
+                    <label for="username" class="form-label" >Username</label>
+                    <input type="text" class="form-control" id="username" name="name" placeholder="Enter Username" required>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                </div>
+                <br>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <br>
+                <p>{{msg}}</p>
+                <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+                
+                <div class="mb-3">
+                    <h6>New member?
+                        <a href="{% url 'customer:signup' %}" style="color: rgb(96, 118, 247);">Sign Up</a>
+                    </h6>
+                </div>
+                
+                <div class="text-center mb-3">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

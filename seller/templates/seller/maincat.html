@@ -1,0 +1,76 @@
+{% extends 'seller/dashboard.html' %}
+{% block content %}
+
+
+{% load static %}
+
+
+
+<div class="container-fluid">
+<div class="row mcat" style="background-color: aliceblue;">
+
+</div>
+</div>
+
+<div class="container-fluid categ">
+    <div class="row" style="background-color: aliceblue;">
+        <div class="col-md-6">
+            <img src="{% static 'images/CLOTHING2.png' %}" class="img-fluid" alt="clothing">
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/FOOTWEAR2.png' %}"  class="img-fluid" alt="footwear">
+        </div>
+
+        
+    </div>
+
+    <div class="row mcat" style="background-color: aliceblue;"></div>
+
+
+    <div class="row" style="background-color: aliceblue;">
+        <div class="col-md-6">
+            <img src="{% static 'images/ACC2.png' %}"  class="img-fluid" alt="accessories">
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/COSMETICS1.png' %}"  class="img-fluid" alt="cosmetics">
+        </div>
+        
+    </div>
+
+    <div class="row" style="background-color: aliceblue;">
+        <div class="col-12">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="category" class="form-label">Product Category</label>
+                    <select name="pdt_category" id="category" class="form-select" required>
+                        <option value="" disabled selected>Select a category</option>
+                        {% for i in categories %}
+                        <option value="{{ i.id }}">{{ i.name }}</option>
+                        {% endfor %}
+                        </select><br>
+                    <button type="submit" class="btn btn-primary" id="catbtn">Submit</button>
+        
+            </form>
+        </div>
+    </div>
+    <div class="row mcat" style="background-color: aliceblue;">
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

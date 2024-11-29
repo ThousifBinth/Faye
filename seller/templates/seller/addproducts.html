@@ -1,0 +1,73 @@
+{% extends 'seller/dashboard.html' %}
+{% block content %}
+
+
+
+
+
+{% load static %}
+
+    <div class="container-fluid pro_detail" style="background-color: aliceblue;">
+        <div class="row mcat" style="background-color: aliceblue;"></div>
+        <!-- <div class="row mcat" style="background-color: aliceblue;"></div> -->
+
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form method="post" enctype="multipart/form-data"
+                    style="margin: 20px; border: 2px solid black; border-radius: 20px;"> <h2 style="text-decoration: underline; margin: 50px;">PRODUCT DETAILS</h2>
+                    
+
+                    {% csrf_token %}
+                    <div class="form-group m-2">
+                        <label for="subcategory" class="form-label">Select Subcategory</label>
+                        <select name="pdt_subcategory" id="subcategory" class="form-select" required>
+                            <option value="" disabled selected>Select a subcategory</option>
+                            {% for i in subcategories %}
+                            <option value="{{ i.id }}">{{ i.name }}</option>  
+                            {% endfor %}
+                        </select>
+                    </div>
+                
+                    <div class="form-group m-2">
+                        <label for="product_name" class="form-label">Product Name</label>
+                        <input type="text" name="name" id="product_name" class="form-control" required>
+                    </div>
+                
+                    <div class="form-group m-2">
+                        <label for="productDescription">Description</label>
+                        <textarea class="form-control" id="productDescription" name="description" rows="3"
+                            placeholder="Enter product description" required></textarea>
+                    </div>
+
+
+                    <div class="form-group m-2">
+                        <label for="productPrice">Price</label>
+                        <input type="number" class="form-control" id="productPrice" name="price" placeholder="Enter product price"
+                            required>
+                    </div>
+
+                    <!-- <div class="form-group m-2">
+                        <label for="productQuantity">Quantity</label>
+                        <input type="number" class="form-control" id="productQuantity"
+                            placeholder="Enter product quantity" required>
+                    </div> -->
+
+                    <div class="form-group m-2">
+                        <label for="productImage">Product Image</label>
+                        <input type="file" class="form-control-file" id="productImage" name="image" accept="image/*" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary m-4">Add Product</button>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+        <div class="row mcat" style="background-color: aliceblue;"></div>
+
+
+        {% endblock %}
+    

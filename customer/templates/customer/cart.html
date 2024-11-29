@@ -1,0 +1,29 @@
+{% extends 'customer/home.html' %}
+{% block content %}
+
+<h1 style="text-align: center; text-decoration: underline;">CART</h1>
+
+{% for i  in cart_items %}
+<div class="card">
+  <div class="card-body">
+    <img src="{{ i.product.image.url }}" alt="" class="card-img-top" alt="..." style="height: 300px; width: 200px;">
+    <h5 style="color: black; font-size: 20px;">{{i.product.product_name}}</h5>
+    <p style="color: rgb(211, 24, 24); text-decoration: underline;">Rs.{{i.product.price}}/-</p>
+    
+    
+    <form action="{% url 'customer:remove_from_cart' i.product_id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">DELETE</button>
+    </form>
+   
+  </div>
+</div>
+{% endfor %}
+<p>Total Quantity: {{ total_quantity }}</p>
+<h3>GRAND TOTAL: {{ grand_total}}</h3>
+
+
+
+
+
+{% endblock %}
